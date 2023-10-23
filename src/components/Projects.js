@@ -40,15 +40,18 @@ export default function Projects() {
                   <div className="flex mt-4">
                     <a
                       href={project.liveLink}
-                      className="text-indigo-400 hover:text-indigo-600 mr-4"
+                      className="text-red-400 hover:text-indigo-600 mr-4"
                       target="_blank"
                       rel="noopener noreferrer"
+                      style={{
+                        transition: "color 0.3s ease-in-out", // Add a smooth color transition
+                      }}
                     >
                       Live
                     </a>
                     <a
                       href={project.githubLink}
-                      className="text-gray-400 hover:text-gray-600"
+                      className="text-pink-400 hover:text-indigo-600"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
