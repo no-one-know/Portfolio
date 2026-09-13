@@ -224,6 +224,45 @@ a {
   background: rgba(0, 0, 0, 0.03);
 }
 
+.hero-social-chips {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.chips-label {
+  font: 500 10px "DM Mono", monospace;
+  color: #777;
+  letter-spacing: 0.1em;
+  margin-right: 4px;
+}
+
+.social-chip {
+  font: 600 12px "DM Mono", monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: rgba(21, 21, 21, 0.04);
+  border: 1px solid #d4d0c7;
+  color: #151515;
+  transition: all 0.2s ease;
+}
+
+.social-chip:hover {
+  background: #151515;
+  color: #f4f2ed;
+  border-color: #151515;
+  transform: translateY(-2px);
+}
+
+.social-chip span {
+  font-size: 11px;
+}
+
 /* ==========================================================================
    Hero Terminal Visual
    ========================================================================== */
@@ -787,6 +826,95 @@ a {
 }
 
 /* ==========================================================================
+   Profiles & Presence Section
+   ========================================================================== */
+.profiles-section {
+  background: #ebe8e0;
+}
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1100px;
+  margin-left: 25%;
+}
+
+.profile-card {
+  background: #f7f5f0;
+  border: 1px solid #d4d0c7;
+  border-radius: 6px;
+  padding: 38px 30px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  border-color: #151515;
+  box-shadow: 0 12px 24px rgba(21, 21, 21, 0.07);
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.platform-badge {
+  font: 700 10px "DM Mono", monospace;
+  letter-spacing: 0.12em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #151515;
+  color: #f4f2ed;
+}
+
+.profile-handle {
+  font: 500 11px "DM Mono", monospace;
+  color: #777;
+}
+
+.profile-card h3 {
+  font-size: 24px;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+  font-weight: 800;
+}
+
+.profile-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #5c5a54;
+  margin: 0 0 28px;
+  flex-grow: 1;
+}
+
+.profile-cta {
+  font: 700 12px "DM Mono", monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #151515;
+  padding: 10px 16px;
+  border: 1px solid #bbb8b0;
+  border-radius: 99px;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.profile-card:hover .profile-cta {
+  background: #151515;
+  color: #f4f2ed;
+  border-color: #151515;
+}
+
+/* ==========================================================================
    Contact Section & Footer
    ========================================================================== */
 .contact {
@@ -823,13 +951,28 @@ a {
 .socials {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 60px;
-  font-size: 12px;
+  gap: 16px;
+  margin-top: 50px;
+  flex-wrap: wrap;
 }
 
-.contact .socials a {
-  color: #aaa;
+.social-pill {
+  font: 600 12px "DM Mono", monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 99px;
+  border: 1px solid #444;
+  color: #ddd;
+  transition: all 0.2s ease;
+}
+
+.social-pill:hover {
+  background: #f4f2ed;
+  color: #151515;
+  border-color: #f4f2ed;
+  transform: translateY(-2px);
 }
 
 footer {
@@ -1146,6 +1289,7 @@ footer {
   .timeline,
   .project-grid,
   .about-grid,
+  .profiles-grid,
   .education,
   .achievement {
     margin-left: 0;
@@ -1167,7 +1311,8 @@ footer {
     margin-bottom: 20px;
   }
   .project-grid,
-  .about-grid {
+  .about-grid,
+  .profiles-grid {
     grid-template-columns: 1fr;
   }
   .project-card {
