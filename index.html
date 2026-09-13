@@ -69,7 +69,7 @@
     </section>
 
     <section id="work" class="section">
-      <div class="section-head"><p class="eyebrow">01 · EXPERIENCE</p><h2>Building reliable<br>systems in production.</h2></div>
+      <div class="section-head"><h2>Building reliable<br>systems in production.</h2></div>
       <div class="timeline">
         <!-- Porter Progression (SDE-1 to SDE-2) -->
         <article class="company-group featured">
@@ -227,37 +227,197 @@
     </section>
 
     <section id="projects" class="section projects">
-      <div class="section-head"><p class="eyebrow">02 · SELECTED PROJECTS</p><h2>Things I've<br>built.</h2></div>
+      <div class="section-head"><h2>Things I've<br>built.</h2></div>
       <div class="project-grid">
         <article class="project-card dark">
-          <div class="project-number">01</div><p class="project-type">SYSTEMS · JAVA</p>
+          <div class="project-number">01</div>
+          <p class="project-type">SYSTEMS · JAVA &amp; REDIS</p>
           <h3>Rate Limiting<br>Service</h3>
-          <p>Scalable endpoint-specific and hierarchical rate limiting using Redis and Lua, with configuration-driven validation and predictable behavior through Redis failures.</p>
-          <div class="tags"><span>Java</span><span>Redis</span><span>LuaScript</span></div>
-          <a href="https://github.com/no-one-know" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+          <p>Distributed endpoint-specific and hierarchical rate limiting service engineered with Redis and atomic Lua scripts. Features configuration-driven validation, sliding-window throttling, and predictable fallback behavior during Redis cluster failures.</p>
+          <div class="tags"><span>Java</span><span>Redis</span><span>LuaScript</span><span>Distributed Systems</span></div>
+          <div class="project-actions">
+            <a class="project-btn-github" href="https://github.com/no-one-know/Rate_Limit" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+          </div>
         </article>
+
         <article class="project-card light">
-          <div class="project-number">02</div><p class="project-type">WEB · FLASK</p>
-          <h3>Blog<br>Website</h3>
-          <p>Full-stack blog platform with authentication, authorization, CRUD workflows and a MySQL-backed data layer.</p>
-          <div class="tags"><span>Flask</span><span>Jinja2</span><span>SQLAlchemy</span><span>MySQL</span></div>
-          <a href="https://github.com/no-one-know" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <div class="project-number">02</div>
+          <p class="project-type">MACHINE LEARNING · FLASK</p>
+          <h3>Flight Price<br>Predictor</h3>
+          <p>End-to-end flight airfare forecasting web app powered by a Scikit-learn Random Forest regression model trained on multi-airline historical pricing datasets. Includes extensive feature engineering, datetime extraction, and real-time inference served on PythonAnywhere.</p>
+          <div class="tags"><span>Python</span><span>Flask</span><span>Scikit-Learn</span><span>Random Forest</span><span>Pandas</span></div>
+          <div class="project-actions">
+            <a class="project-btn-live" href="http://learner101.pythonanywhere.com/" target="_blank" rel="noreferrer"><span class="live-pulse"></span>Live Demo ↗</a>
+            <a class="project-btn-github" href="https://github.com/no-one-know/Flight_Price_Predictor" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card light">
+          <div class="project-number">03</div>
+          <p class="project-type">WEB APP · REACT</p>
+          <h3>Task<br>Manager</h3>
+          <p>Responsive task and productivity management application built with React and Material-UI. Features full CRUD operations, priority classification, completion status toggles, due-date filters, and persistent state management via browser LocalStorage.</p>
+          <div class="tags"><span>React</span><span>Material-UI</span><span>JavaScript</span><span>LocalStorage</span><span>Hooks</span></div>
+          <div class="project-actions">
+            <a class="project-btn-live" href="https://task-manager-1019.netlify.app/" target="_blank" rel="noreferrer"><span class="live-pulse"></span>Live Demo ↗</a>
+            <a class="project-btn-github" href="https://github.com/no-one-know/Task-Manager" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card dark">
+          <div class="project-number">04</div>
+          <p class="project-type">GEO &amp; API · JAVASCRIPT</p>
+          <h3>Real-Time<br>Weather Report</h3>
+          <p>Dynamic atmospheric dashboard delivering live meteorological metrics, cloud cover, humidity levels, and wind velocities across searchable global cities via the OpenWeather API with automated geolocation discovery.</p>
+          <div class="tags"><span>JavaScript</span><span>OpenWeather API</span><span>Geolocation</span><span>Async / REST</span><span>CSS3</span></div>
+          <div class="project-actions">
+            <a class="project-btn-live" href="https://real-time-weather-update.netlify.app/" target="_blank" rel="noreferrer"><span class="live-pulse"></span>Live Demo ↗</a>
+            <a class="project-btn-github" href="https://github.com/no-one-know/Live_Weather_Update" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card light span-2">
+          <div class="project-span-left">
+            <div class="project-number">05</div>
+            <p class="project-type">FULL-STACK · FLASK &amp; MYSQL</p>
+            <h3>Content &amp; Blog<br>Platform</h3>
+          </div>
+          <div class="project-span-right">
+            <p>Full-stack blogging platform featuring secure session authentication, role-based access control, rich editorial publishing workflows, Jinja2 dynamic templates, and relational data persistence via SQLAlchemy ORM with MySQL.</p>
+            <div class="tags"><span>Flask</span><span>Python</span><span>SQLAlchemy</span><span>MySQL</span><span>Jinja2</span></div>
+            <div class="project-actions">
+              <a class="project-btn-live" href="https://blogwebsite.pythonanywhere.com/" target="_blank" rel="noreferrer"><span class="live-pulse"></span>Live Demo ↗</a>
+              <a class="project-btn-github" href="https://github.com/no-one-know/BLOG_WEBSITE" target="_blank" rel="noreferrer">GitHub ↗</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="about" class="section about">
-      <div class="section-head"><p class="eyebrow">03 · ABOUT</p><h2>Engineer by craft,<br>curious by default.</h2></div>
+      <div class="section-head"><h2>Engineer by craft,<br>curious by default.</h2></div>
       <div class="about-grid">
         <div><p class="big-copy">I enjoy working where software meets scale: data-intensive systems, backend architecture, reliability, and AI-powered products.</p><p>My engineering experience spans production systems at Porter and Basil.Care, plus independent work on distributed infrastructure and web applications.</p></div>
-        <div class="skills"><h3>Toolkit</h3><p>C++ · Python · Kotlin · Java · Ruby</p><p>Docker · Terraform · GCP · AWS</p><p>Kafka · Pub/Sub · Redis</p><p>PostgreSQL · MongoDB · MySQL</p><p>React · Android · Flask</p><p>Machine Learning · RAG · LLM APIs</p></div>
+        <div class="toolkit-container">
+          <div class="toolkit-header">
+            <h3>Toolkit</h3>
+            <span class="toolkit-counter" id="toolkitCounter">20 technologies</span>
+          </div>
+
+          <div class="toolkit-tabs" role="tablist" aria-label="Filter technologies by domain">
+            <button type="button" class="toolkit-tab active" data-filter="all" role="tab" aria-selected="true">
+              All <span class="tab-count">20</span>
+            </button>
+            <button type="button" class="toolkit-tab" data-filter="distributed" role="tab" aria-selected="false">
+              Distributed <span class="tab-count">4</span>
+            </button>
+            <button type="button" class="toolkit-tab" data-filter="cloud-data" role="tab" aria-selected="false">
+              Cloud &amp; Data <span class="tab-count">7</span>
+            </button>
+            <button type="button" class="toolkit-tab" data-filter="ai-ml" role="tab" aria-selected="false">
+              AI &amp; ML <span class="tab-count">3</span>
+            </button>
+            <button type="button" class="toolkit-tab" data-filter="languages" role="tab" aria-selected="false">
+              Languages <span class="tab-count">6</span>
+            </button>
+          </div>
+
+          <div class="toolkit-grid" id="toolkitGrid">
+            <!-- Languages -->
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">Java</span>
+              <span class="chip-meta">Systems</span>
+            </div>
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">Kotlin</span>
+              <span class="chip-meta">Spring Services</span>
+            </div>
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">Python</span>
+              <span class="chip-meta">Data &amp; ML</span>
+            </div>
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">JavaScript</span>
+              <span class="chip-meta">Async &amp; Web</span>
+            </div>
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">C++</span>
+              <span class="chip-meta">Low-Latency</span>
+            </div>
+            <div class="toolkit-chip" data-category="languages">
+              <span class="chip-name">Ruby</span>
+              <span class="chip-meta">Backend</span>
+            </div>
+
+            <!-- Distributed & Messaging -->
+            <div class="toolkit-chip" data-category="distributed">
+              <span class="chip-name">Kafka</span>
+              <span class="chip-meta">Event Streams</span>
+            </div>
+            <div class="toolkit-chip" data-category="distributed">
+              <span class="chip-name">AWS SQS</span>
+              <span class="chip-meta">Queue Services</span>
+            </div>
+            <div class="toolkit-chip" data-category="distributed">
+              <span class="chip-name">Pub/Sub</span>
+              <span class="chip-meta">Messaging</span>
+            </div>
+            <div class="toolkit-chip" data-category="distributed">
+              <span class="chip-name">Redis</span>
+              <span class="chip-meta">In-Memory Cache</span>
+            </div>
+
+            <!-- Cloud & Data -->
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">PostgreSQL</span>
+              <span class="chip-meta">Relational DB</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">MongoDB</span>
+              <span class="chip-meta">Document Store</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">MySQL</span>
+              <span class="chip-meta">Relational DB</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">Docker</span>
+              <span class="chip-meta">Containers</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">Terraform</span>
+              <span class="chip-meta">IaC Infra</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">GCP</span>
+              <span class="chip-meta">Cloud Engine</span>
+            </div>
+            <div class="toolkit-chip" data-category="cloud-data">
+              <span class="chip-name">AWS</span>
+              <span class="chip-meta">Cloud Infra</span>
+            </div>
+
+            <!-- AI & ML -->
+            <div class="toolkit-chip" data-category="ai-ml">
+              <span class="chip-name">Machine Learning</span>
+              <span class="chip-meta">Predictive Models</span>
+            </div>
+            <div class="toolkit-chip" data-category="ai-ml">
+              <span class="chip-name">RAG</span>
+              <span class="chip-meta">Vector Retrieval</span>
+            </div>
+            <div class="toolkit-chip" data-category="ai-ml">
+              <span class="chip-name">LLM APIs</span>
+              <span class="chip-meta">Prompt &amp; Tools</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Dedicated Profiles & Engineering Presence Section -->
     <section id="profiles" class="section profiles-section">
       <div class="section-head">
-        <p class="eyebrow">04 · PROFILES & PRESENCE</p>
         <h2>Find my code<br>and work.</h2>
       </div>
       <div class="profiles-grid">
@@ -303,7 +463,6 @@
     </section>
 
     <section id="contact" class="contact">
-      <p class="eyebrow">05 · CONTACT</p>
       <h2>Have a hard problem?<br><em>Let's build it.</em></h2>
       <a class="contact-link" href="mailto:bagra200chetan@gmail.com">bagra200chetan@gmail.com ↗</a>
       <div class="socials">
