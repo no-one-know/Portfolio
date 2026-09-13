@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Porter Engineering Case Study — Chetan Bagra</title>
+  <meta name="description" content="In-depth engineering case study of Chetan Bagra's work at Porter as SDE-2 and SDE-1: zero-downtime Ktor to Spring Boot migration, domain-driven service segregation, Snowflake analytical pipelines, and fare rule engines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="nav case-nav">
+    <a class="back-link" href="../index.html#work">← Back to Overview</a>
+    <a class="brand" href="../index.html" aria-label="Chetan Bagra Home">
+      <span class="brand-code">
+        <span class="code-dot"></span>
+        <span class="code-fn">chetan.bagra</span><span class="code-paren">()</span>
+      </span>
+    </a>
+    <a class="nav-cta" href="mailto:bagra200chetan@gmail.com">Let's talk ↗</a>
+  </header>
+
+  <main>
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+      <div class="case-hero-content">
+        <p class="eyebrow">ENGINEERING CASE STUDY · DISTRIBUTED SYSTEMS & ARCHITECTURE</p>
+        <h1>Scaling Core Systems<br>at <em>Porter.</em></h1>
+        <p class="case-subtitle">Zero-downtime microservice migrations, domain-driven service segregation, high-throughput analytical data pipelines, and dynamic pricing engines for India's leading logistics marketplace.</p>
+
+        <div class="case-meta-grid">
+          <div class="case-meta-item">
+            <small>ROLE</small>
+            <strong>SDE-2 <span style="font-weight:400; font-size:12px; color:#666;">(Promoted Apr 2026, formerly SDE-1)</span></strong>
+          </div>
+          <div class="case-meta-item">
+            <small>TIMELINE</small>
+            <strong>DEC 2024 — PRESENT</strong>
+          </div>
+          <div class="case-meta-item">
+            <small>LOCATION</small>
+            <strong>BENGALURU, INDIA</strong>
+          </div>
+          <div class="case-meta-item">
+            <small>CORE STACK</small>
+            <strong>Kotlin · Spring Boot · PostgreSQL · Redis · Kafka · Snowflake · OpenTelemetry</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Banner -->
+    <section class="case-content" style="padding-bottom: 0;">
+      <div class="case-metrics-banner">
+        <div class="case-metric-box">
+          <strong>0 Downtime</strong>
+          <span>Ktor → Spring Boot Migration</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>2.5 TB</strong>
+          <span>Disk Storage Reclaimed</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>18 → 2</strong>
+          <span>Tables Refactored</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>0.8s</strong>
+          <span>Invoice p99 (from 6.6s)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Case Study Content -->
+    <section class="case-content">
+      <!-- Section 1: SDE-2 Architecture - Zero-Downtime Migration & DDD Segregation -->
+      <article class="case-block" id="sde-2">
+        <div class="case-block-header">
+          <p class="eyebrow">01 · SDE-2 ARCHITECTURAL LEADERSHIP</p>
+          <h2>Zero-Downtime Ktor to Spring Boot Migration & Domain-Driven Segregation</h2>
+        </div>
+
+        <p class="lede">As Porter scaled, a legacy Ktor service had become an overloaded monolith with intertwined responsibilities spanning trip tracking, fare computations, driver status, and post-trip settlements. As SDE-2, I led the architectural segregation of this monolith into a clean Domain-Driven Design (DDD) service in Spring Boot, migrating mission-critical P0 endpoints with zero customer downtime.</p>
+
+        <!-- System Architecture Diagram -->
+        <div class="arch-diagram-wrap">
+          <div class="arch-diagram-top">
+            <span></span><span></span><span></span>
+            <small>ddd_segregation.sys — ktor to spring boot migration</small>
+          </div>
+          <div class="arch-diagram-body">
+            <pre>
+BEFORE: Bloated Monolithic Service (Ktor)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [Trip Lifecycle]  •  [Landing Fare Calculation]  •  [Post-Trip Settlement]  │
+│ (Coupled domain logic, high deployment blast radius, brittle shared DBs)   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                      (Domain-Driven Design Segregation)
+                                       ▼
+AFTER: Clean Decoupled Microservice Architecture (Spring Boot & Kotlin)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Trip Service (Spring Boot + Kotlin)                                     │
+│ ┌───────────────────────────┐         ┌───────────────────────────────────┐ │
+│ │ Trip Settlement Domain    │ ◄─────► │ Landing Fare Calculation Domain   │ │
+│ │ • Bounded trip context    │         │ • P0 endpoint at trip completion  │ │
+│ └─────────────┬─────────────┘         └─────────────────┬─────────────────┘ │
+└───────────────┼─────────────────────────────────────────┼───────────────────┘
+                │                                         │
+                ▼                                         ▼
+┌───────────────────────────────┐         ┌───────────────────────────────────┐
+│ PostgreSQL Transactional DB   │         │ Redis High-Throughput Cache       │
+│ (ACID ledger, partitioned)    │         │ (Sub-millisecond fare lookups)    │
+└───────────────┬───────────────┘         └─────────────────┬─────────────────┘
+                │                                           │
+                ▼                                           ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Kafka Event Streaming  +  OpenTelemetry Distributed Tracing & APM           │
+└─────────────────────────────────────────────────────────────────────────────┘</pre>
+          </div>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Challenge</span>
+            <h4>Monolithic Bloat & Critical P0 Trip Flow</h4>
+            <ul>
+              <li>The legacy service combined multiple business domains into a single codebase, making deployments risky and slow.</li>
+              <li>The landing screen fare endpoint at trip completion is one of Porter's most critical paths: any latency spike or failure directly halts trip settlements and driver payouts.</li>
+              <li>Required moving high-volume production traffic from Ktor to Spring Boot with Kotlin without dropping a single in-flight trip or recording pricing discrepancies.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">Engineering Strategy</span>
+            <h4>Zero-Downtime Migration & Bounded Contexts</h4>
+            <ul>
+              <li><b>Domain-Driven Design (DDD):</b> Segregated trip state and fare settlement into distinct bounded contexts with explicit interfaces and zero circular dependencies.</li>
+              <li><b>Shadow Traffic & Parity Validation:</b> Built a dark-launch proxy that piped real trip completion events concurrently to both the legacy Ktor endpoint and the new Spring Boot service, comparing calculation outputs to ensure 100% parity.</li>
+              <li><b>Canary Cutover:</b> Migrated endpoints incrementally by city and vehicle category, backed by automated health checks and instant rollback triggers.</li>
+              <li><b>Distributed Observability:</b> Instrumented the new services with OpenTelemetry, tracing requests end-to-end across API gateways, cache layers, and databases.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <div class="impact-card">
+            <span class="card-label">Measurable Outcome</span>
+            <h4>100% Zero Downtime & Cleaner Domain Decoupling</h4>
+            <p>Successfully migrated all critical landing screen trip fare and settlement endpoints with <b>zero seconds of downtime</b> and zero revenue leakage. Decoupled the domain into modular, maintainable microservices that now allow product teams to iterate independently with high deployment confidence.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Snowflake Data Pipeline -->
+      <article class="case-block" id="sde-1">
+        <div class="case-block-header">
+          <p class="eyebrow">02 · SDE-1: DATA INFRASTRUCTURE</p>
+          <h2>End-to-End Snowflake Analytical Pipeline</h2>
+        </div>
+
+        <p class="lede">Operational relational databases were facing severe IOPS saturation and disk bloat from long-running analytics queries. I designed an asynchronous streaming ingestion pipeline into Snowflake to isolate operational workloads and streamline analytics.</p>
+
+        <!-- System Architecture Diagram -->
+        <div class="arch-diagram-wrap">
+          <div class="arch-diagram-top">
+            <span></span><span></span><span></span>
+            <small>architecture_flow.sys — snowflake ingestion</small>
+          </div>
+          <div class="arch-diagram-body">
+            <pre>
+[ OLTP Postgres / MySQL ]
+          │  (CDC / Debezium)
+          ▼
+┌─────────────────────────┐      ┌─────────────────────────┐
+│ Kafka / GCP PubSub Bus  │ ───► │ Ingestion & Transform   │
+└─────────────────────────┘      │ Workers (Kotlin / Ruby) │
+                                 └───────────┬─────────────┘
+                                             │ Batch Micro-Chunks
+                                             ▼
+                                 ┌─────────────────────────┐
+                                 │ Snowflake Data Lake     │
+                                 │ • Partitioned Storage   │
+                                 │ • Schema Pruned         │
+                                 │ • Deduplication Engine  │
+                                 └─────────────────────────┘</pre>
+          </div>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Challenge</span>
+            <h4>Storage Bloat & Relational Contention</h4>
+            <ul>
+              <li>High-volume booking and allocation transactions generated hundreds of gigabytes of historical event logs monthly.</li>
+              <li>Operational OLTP instances suffered CPU spikes of over 85% whenever data science and reporting teams queried raw transaction tables.</li>
+              <li>Index fragmentation and uncontrolled schema growth were causing exponential cloud storage cost growth.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">Engineering Strategy</span>
+            <h4>Streamlined Ingestion & Partitioning</h4>
+            <ul>
+              <li>Decoupled OLTP workloads by streaming CDC events into Kafka topics with idempotent deduplication keys.</li>
+              <li>Configured batch micro-chunk staging to write directly into Snowflake external tables with auto-clustering on timestamp and city partitions.</li>
+              <li>Implemented automated TTL and retention policies that safely pruned redundant raw payloads from operational disks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <div class="impact-card">
+            <span class="card-label">Measurable Outcome</span>
+            <h4>2.5 TB Storage Reduced & 2.35% Cluster CPU Savings</h4>
+            <p>Freed up <b>2.5 Terabytes</b> of primary database disk space, dropped operational cluster CPU utilization by <b>2.35%</b> across the board, and lowered data query latency for analytics teams from minutes to seconds.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: Fare Rule Engine Redesign -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">03 · SDE-1: BACKEND ARCHITECTURE</p>
+          <h2>Fare Rule Engine: 18 Tables Reduced to 2</h2>
+        </div>
+
+        <p class="lede">Porter's dynamic pricing involves numerous dimensions: vehicle categories, distance tiers, peak hours, regional tolls, demand multipliers, and custom corporate rules. The legacy implementation spread these across 18 tightly-coupled database tables.</p>
+
+        <div class="arch-diagram-wrap">
+          <div class="arch-diagram-top">
+            <span></span><span></span><span></span>
+            <small>fare_engine.sys — schema redesign</small>
+          </div>
+          <div class="arch-diagram-body">
+            <pre>
+BEFORE (Legacy Architecture):
+┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+│ BaseFare │──►│ DistTier │──►│ PeakSurg │──►│ TollRule │ (18 relational tables)
+└──────────┘   └──────────┘   └──────────┘   └──────────┘  Schema migration for every change!
+
+AFTER (Dynamic Declarative Engine):
+┌──────────────────────────────────────┐     ┌──────────────────────────────────────┐
+│ fare_rules (Master Rule Config)      │     │ fare_rule_conditions (Polymorphic)   │
+│ • rule_id, city, vehicle, priority   │ ──► │ • condition_type (TIME, GEO, DEMAND) │
+│ • formula_type, base_amount, status  │     │ • operator, operand_json, weights    │
+└──────────────────────────────────────┘     └──────────────────────────────────────┘
+                   ▲
+                   │ Evaluated in-memory via cached rule trees (0 DB migrations!)
+┌──────────────────┴───────────────────┐
+│ Booking Request: Origin, Dest, Time  │
+└──────────────────────────────────────┘</pre>
+          </div>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Problem</span>
+            <h4>Migration Friction & Query Overhead</h4>
+            <ul>
+              <li>Every new business pricing knob (e.g. wet-weather surcharges, special festival pricing) required writing and executing manual database migrations.</li>
+              <li>Executing 18-table relational joins during booking quotation introduced latency penalties on hot P0 checkout paths.</li>
+              <li>High risk of regression bugs when product managers requested rule adjustments.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">The Solution</span>
+            <h4>Declarative In-Memory Rule Evaluation</h4>
+            <ul>
+              <li>Consolidated the entire schema into 2 polymorphic tables: <code>fare_rules</code> and <code>fare_rule_conditions</code>.</li>
+              <li>Engineered a condition evaluation engine that parses JSON condition trees in-memory, cached in Redis with sub-millisecond lookups.</li>
+              <li>Allowed operations teams to configure new pricing levers via internal portals without requiring engineering deployments.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <div class="impact-card">
+            <span class="card-label">Business & Tech Impact</span>
+            <h4>Zero Schema Migrations & Instant Pricing Agility</h4>
+            <p>Completely eliminated the need for database migrations when launching new fare rules. Pricing changes that previously took days of deployment cycles can now be deployed instantly with zero downtime.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: GST Invoice Regeneration at Scale -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">04 · SDE-1: SCALABILITY & RELIABILITY</p>
+          <h2>6.5 Crore GST Invoices & Latency Optimization</h2>
+        </div>
+
+        <p class="lede">A mandatory regulatory compliance update required recalculating and regenerating 6.5 crore (65 million) historical GST tax invoices across India without bringing down ongoing customer booking transactions.</p>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Bottleneck</span>
+            <h4>Queue Choking & High p99 Latency</h4>
+            <ul>
+              <li>The existing invoice generation worker suffered from a <b>6.6s p99 latency</b> due to unindexed lookups and unoptimized PDF generation calls.</li>
+              <li>Enqueuing 65,000,000 regeneration jobs threatened to starve standard real-time booking invoice queues.</li>
+              <li>Strict statutory compliance required 100% tax calculation accuracy with zero rounding or missing discrepancies.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">Optimization Strategy</span>
+            <h4>Worker Concurrency & Parallel Chunking</h4>
+            <ul>
+              <li>Separated regeneration workers into dedicated low-priority worker pools, safeguarding live P0 checkout queues.</li>
+              <li>Batch-fetched invoice records using composite indexed keys, reducing DB round-trips by over 80%.</li>
+              <li>Cached static state-wise GST rules and templated PDF asset memory buffers.</li>
+              <li>Tuned worker thread pools and connection pooling in Ruby and Kotlin services.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <div class="impact-card">
+            <span class="card-label">Results</span>
+            <h4>Latency Cut from 6.6s to 0.8s (8.25x Faster)</h4>
+            <p>Successfully processed and generated all <b>6.5 crore GST invoices</b> ahead of regulatory deadlines with zero downtime. Slashed the invoice generation worker p99 latency from <b>6.6 seconds down to 0.8 seconds</b>, saving significant compute cycles.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 5: Shard Merging & OLC Automation -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">05 · SDE-1: COST OPTIMIZATION & AUTOMATION</p>
+          <h2>Marketplace Shard Merge & OLC Retry Automation</h2>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="solution-card">
+            <span class="card-label">Infrastructure Optimization</span>
+            <h4>Marketplace Shard Consolidation</h4>
+            <p>Identified several low-density marketplace database shards that were significantly underutilized. Planned and executed a live migration and consolidation strategy that merged redundant shards without dropping in-flight booking sessions.</p>
+            <p><b>Impact:</b> Direct recurring cost reduction of <b>₹16,000 / month</b> on cloud database provisioning.</p>
+          </div>
+
+          <div class="impact-card">
+            <span class="card-label">Customer Experience & Ops</span>
+            <h4>Order Lifecycle (OLC) Retry Automation</h4>
+            <p>Transient network hiccups or downstream payment webhook timeouts occasionally caused order lifecycle state machines to stall, generating manual support tickets for customer care (CC) agents.</p>
+            <p>Implemented an automated exponential-backoff retry framework with dead-letter queue (DLQ) re-processing that autonomously resolved stalled states.</p>
+            <p><b>Impact:</b> Reduced customer care agent escalations related to OLC stalls to <b>0%</b>.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 6: Observability & Tooling -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">06 · PRODUCTION EXCELLENCE & TOOLKIT</p>
+          <h2>Engineering Toolkit & System Observability</h2>
+        </div>
+        <p>Built comprehensive multi-layer observability across P0 trip, booking, and fare endpoints using OpenTelemetry distributed tracing, Prometheus metrics, and Grafana dashboards. Monitored distributed transactions end-to-end to detect regressions before users experienced them.</p>
+        
+        <div class="tags" style="margin-top: 20px;">
+          <span>Kotlin</span>
+          <span>Spring Boot</span>
+          <span>Ktor</span>
+          <span>PostgreSQL</span>
+          <span>Redis</span>
+          <span>Kafka</span>
+          <span>OpenTelemetry</span>
+          <span>Snowflake</span>
+          <span>Ruby</span>
+          <span>GCP Pub/Sub</span>
+          <span>Terraform</span>
+          <span>Docker</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Cross Case Study Navigation -->
+    <nav class="case-footer-nav">
+      <a class="prev-cta" href="../index.html#work">← Back to Overview</a>
+      <a class="next-cta" href="basil-care.html">Next Case Study: Basil.Care →</a>
+    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 Chetan Bagra</span>
+    <span>Production Systems & Architecture.</span>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

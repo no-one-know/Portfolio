@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basil.Care Engineering Case Study — Chetan Bagra</title>
+  <meta name="description" content="In-depth engineering case study of Chetan Bagra's work at Basil.Care: conversational health agents, 98.3% accurate document intelligence, RAG pipelines, React-to-Android JS bridge, and OAuth/OIDC.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="nav case-nav">
+    <a class="back-link" href="../index.html#work">← Back to Overview</a>
+    <a class="brand" href="../index.html" aria-label="Chetan Bagra Home">
+      <span class="brand-code">
+        <span class="code-dot"></span>
+        <span class="code-fn">chetan.bagra</span><span class="code-paren">()</span>
+      </span>
+    </a>
+    <a class="nav-cta" href="mailto:bagra200chetan@gmail.com">Let's talk ↗</a>
+  </header>
+
+  <main>
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+      <div class="case-hero-content">
+        <p class="eyebrow">ENGINEERING CASE STUDY · AI SYSTEMS & HEALTHTECH</p>
+        <h1>AI-Powered Diagnostics<br>at <em>Basil.Care.</em></h1>
+        <p class="case-subtitle">Conversational health agents, document intelligence with grounded RAG, longitudinal medical record parsing, and high-performance React-to-Android hybrid bridges.</p>
+
+        <div class="case-meta-grid">
+          <div class="case-meta-item">
+            <small>ROLE</small>
+            <strong>SDE-1 & SDE Intern</strong>
+          </div>
+          <div class="case-meta-item">
+            <small>TIMELINE</small>
+            <strong>DEC 2023 — NOV 2024</strong>
+          </div>
+          <div class="case-meta-item">
+            <small>LOCATION</small>
+            <strong>MUMBAI, INDIA</strong>
+          </div>
+          <div class="case-meta-item">
+            <small>CORE STACK</small>
+            <strong>Python · React · Android · RAG · MongoDB · AWS</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Banner -->
+    <section class="case-content" style="padding-bottom: 0;">
+      <div class="case-metrics-banner">
+        <div class="case-metric-box">
+          <strong>98.3%</strong>
+          <span>Extraction Accuracy</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>Zero</strong>
+          <span>Grounded RAG Hallucinations</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>Real-Time</strong>
+          <span>WebSocket Diagnostics</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>OAuth / OIDC</strong>
+          <span>Enterprise Auth Module</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Case Study Content -->
+    <section class="case-content">
+      <!-- Section 1: Conversational Health Agent -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">01 · CONVERSATIONAL AGENTS & LONGITUDINAL DATA</p>
+          <h2>Interactive Health Chatbot & Trend Orchestration</h2>
+        </div>
+
+        <p class="lede">Diagnostic laboratory reports contain dense biological data, disjointed reference ranges, and complex medical terminology that users struggle to contextualize over time. I engineered a conversational system allowing patients to query longitudinal health records seamlessly.</p>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Problem</span>
+            <h4>Disjointed Lab Reports & Historical Blind Spots</h4>
+            <ul>
+              <li>Diagnostic test results were siloed across disparate PDF files from multiple testing laboratories.</li>
+              <li>Users had no way to ask natural language questions regarding biomarker trends (e.g. tracking fasting glucose or lipid profiles across consecutive quarters).</li>
+              <li>Required high-accuracy medical validation to ensure clinical advice boundaries were strictly maintained.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">Engineering Strategy</span>
+            <h4>Stateful Orchestration & Historical Profiling</h4>
+            <ul>
+              <li>Architected an orchestration state machine that correlates historical test records into a unified patient timeline.</li>
+              <li>Implemented natural language intent parsing capable of detecting biomarker queries, temporal comparisons, and normal vs. abnormal threshold inquiries.</li>
+              <li>Designed proactive diagnostic insights prompting users when biomarker values crossed clinical attention thresholds.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Document Intelligence & RAG Pipeline -->
+      <article class="case-block" id="rag-pipeline">
+        <div class="case-block-header">
+          <p class="eyebrow">02 · DOCUMENT INTELLIGENCE & LLMS</p>
+          <h2>98.3% Accurate PDF Extraction & RAG Pipeline</h2>
+        </div>
+
+        <p class="lede">Medical document extraction demands zero tolerance for transcription errors. I built an automated ingestion and parsing pipeline combining deterministic PDF parsing, LLM prompting strategies, and vector-backed Retrieval-Augmented Generation (RAG).</p>
+
+        <!-- System Architecture Diagram -->
+        <div class="arch-diagram-wrap">
+          <div class="arch-diagram-top">
+            <span></span><span></span><span></span>
+            <small>rag_pipeline.sys — extraction & source grounding</small>
+          </div>
+          <div class="arch-diagram-body">
+            <pre>
+┌─────────────────────────┐
+│ Patient Lab Report PDF  │
+└────────────┬────────────┘
+             │ PDF Stream & OCR Parser
+             ▼
+┌──────────────────────────────────────┐
+│ Deterministic Table & Layout Parsing │
+└────────────┬─────────────────────────┘
+             │ Structured Chunks
+             ▼
+┌──────────────────────────────────────┐      ┌──────────────────────────────┐
+│ LLM Extraction (Few-Shot Prompts)    │ ───► │ Pydantic Validation Schema   │
+│ • Biomarker Name, Value, Unit, Range │      │ • 98.3% Extraction Accuracy  │
+└──────────────────────────────────────┘      └──────────────┬───────────────┘
+                                                             │
+                                                             ▼
+┌──────────────────────────────────────┐      ┌──────────────────────────────┐
+│ Medical Knowledge Vector Store       │ ───► │ Grounded Conversational RAG  │
+│ (Indexed Clinical Context & Sources) │      │ • Strict Source Citations    │
+└──────────────────────────────────────┘      │ • Zero-Hallucination Bounds  │
+                                              └──────────────────────────────┘</pre>
+          </div>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="solution-card">
+            <span class="card-label">Extraction Engineering</span>
+            <h4>Prompt Optimization & Strict Schemas</h4>
+            <ul>
+              <li>Developed structured prompt templates and few-shot examples for arbitrary lab layouts across diverse hospital formats.</li>
+              <li>Enforced runtime schema validation using Pydantic, flagging any mismatched units (e.g. mg/dL vs. mmol/L) for secondary verification.</li>
+              <li>Reached a verified <b>98.3% extraction accuracy</b> across benchmark test suites of historical reports.</li>
+            </ul>
+          </div>
+
+          <div class="impact-card">
+            <span class="card-label">Hallucination Mitigation</span>
+            <h4>Grounded RAG with Source Citations</h4>
+            <ul>
+              <li>Indexed medical terminology, clinical reference ranges, and lab footnotes into vector embeddings.</li>
+              <li>Formulated a RAG retrieval system that restricts generative responses exclusively to the retrieved source chunks.</li>
+              <li>Every chatbot response provided clickable footnote citations back to the specific test row in the user's uploaded document.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: React to Native Android Bridge -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">03 · HYBRID MOBILE ARCHITECTURE</p>
+          <h2>High-Performance React ↔ Native Android Bridge</h2>
+        </div>
+
+        <p class="lede">To ship rapid iterative UI updates without constant Play Store deployment cycles, the application leveraged a hybrid architecture: React web applications running inside a native Android WebView container.</p>
+
+        <div class="case-grid-split">
+          <div class="challenge-card">
+            <span class="card-label">The Challenge</span>
+            <h4>Bridging Web & Native Device Features</h4>
+            <ul>
+              <li>Standard WebView <code>postMessage</code> communication suffered from serialization latency, unhandled promise rejections, and loose typing.</li>
+              <li>The web interface required hardware-accelerated camera access for document scanning, secure biometrics, and offline persistence.</li>
+              <li>Real-time diagnostic events and live chat required persistent bidirectional syncing.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">The Implementation</span>
+            <h4>Type-Safe JS Bridge & WebSockets</h4>
+            <ul>
+              <li>Built an asynchronous, type-safe JavaScript-to-Android bridge supporting promise-based RPC calls between React components and Java/Kotlin handlers.</li>
+              <li>Integrated native device features (camera capture, document edge detection, and secure storage) accessible directly via React hooks.</li>
+              <li>Maintained real-time diagnostic synchronization using persistent WebSockets with automatic reconnection handlers.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: Security & Auth Module -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">04 · SECURITY & IDENTITY</p>
+          <h2>OAuth 2.0 & OpenID Connect (OIDC) Infrastructure</h2>
+        </div>
+
+        <div class="case-grid-split">
+          <div class="solution-card">
+            <span class="card-label">Identity Module</span>
+            <h4>Enterprise-Grade Authentication</h4>
+            <p>Designed and deployed an end-to-end OAuth 2.0 and OpenID Connect (OIDC) authorization module to safeguard sensitive protected health information (PHI).</p>
+            <ul>
+              <li>Implemented secure JWT authentication with short-lived access tokens and sliding refresh token rotation.</li>
+              <li>Enforced fine-grained Role-Based Access Control (RBAC) across patient, physician, and admin API boundaries.</li>
+            </ul>
+          </div>
+
+          <div class="impact-card">
+            <span class="card-label">Compliance & Reliability</span>
+            <h4>Security & Protection</h4>
+            <p>Protected patient data with AES-256 encryption at rest in MongoDB and TLS 1.3 in transit. Zero security vulnerabilities identified during vulnerability assessments.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 5: Tech Stack -->
+      <article class="case-block">
+        <div class="case-block-header">
+          <p class="eyebrow">05 · TOOLKIT</p>
+          <h2>Technologies & Systems Used</h2>
+        </div>
+        
+        <div class="tags" style="margin-top: 20px;">
+          <span>Python</span>
+          <span>FastAPI</span>
+          <span>React</span>
+          <span>Android WebView</span>
+          <span>WebSockets</span>
+          <span>RAG / Vector DBs</span>
+          <span>LLM APIs</span>
+          <span>MongoDB</span>
+          <span>Docker</span>
+          <span>AWS</span>
+          <span>OAuth 2.0 / OIDC</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Cross Case Study Navigation -->
+    <nav class="case-footer-nav">
+      <a class="prev-cta" href="porter.html">← Previous Case Study: Porter</a>
+      <a class="next-cta" href="../index.html#work">Back to Overview ↗</a>
+    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 Chetan Bagra</span>
+    <span>Building AI & Full-Stack Systems with Intent.</span>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

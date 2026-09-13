@@ -1,11 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chetan Bagra — Software Engineer</title>
+  <meta name="description" content="Portfolio of Chetan Bagra, Software Engineer specializing in scalable backend systems, data pipelines, distributed systems, and AI-powered applications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>This is my personal portfolio website</h1>
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Chetan Bagra Home">
+      <span class="brand-code">
+        <span class="code-dot"></span>
+        <span class="code-fn">chetan.bagra</span><span class="code-paren">()</span>
+      </span>
+    </a>
+    <nav>
+      <a href="#work">Work</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="mailto:bagra200chetan@gmail.com">Let's talk ↗</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">SOFTWARE ENGINEER · BENGALURU</p>
+        <h1>I build systems that<br><em>scale.</em></h1>
+        <p class="lede">SDE-2 at Porter focused on backend architecture, distributed systems, domain-driven design, and high-throughput data pipelines. I like turning complex problems into simple, reliable products.</p>
+        <div class="actions">
+          <a class="button primary" href="#work">Explore my work <span>↓</span></a>
+          <a class="button secondary" href="mailto:bagra200chetan@gmail.com">Get in touch ↗</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="grid-art"></div>
+        <div class="terminal">
+          <div class="terminal-top"><span></span><span></span><span></span><small>chetan@systems ~</small></div>
+          <div class="terminal-body">
+            <p><b>$</b> whoami</p><p class="muted">software_engineer_2</p>
+            <p><b>$</b> focus</p><p class="muted">backend · distributed · ddd</p>
+            <p><b>$</b> status</p><p class="ok">● building</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <div><strong>0 Downtime</strong><span>Ktor → Spring Boot migration</span></div>
+      <div><strong>2.5 TB</strong><span>storage reduced</span></div>
+      <div><strong>6.5 Cr</strong><span>GST invoices regenerated</span></div>
+      <div><strong>0.8s</strong><span>invoice worker p99</span></div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="section-head"><p class="eyebrow">01 · EXPERIENCE</p><h2>Building reliable<br>systems in production.</h2></div>
+      <div class="timeline">
+        <!-- Porter Progression (SDE-1 to SDE-2) -->
+        <article class="company-group featured">
+          <div class="role-meta">
+            <span>DEC 2024 — PRESENT</span>
+            <span>BENGALURU</span>
+            <span class="company-badge">Internal Promotion</span>
+          </div>
+          <div>
+            <div class="company-head">
+              <h3>Porter <small>Marketplace & Core Logistics Systems</small></h3>
+              <a class="role-deepdive-btn" href="experience/porter.html">Explore Porter Case Study ↗</a>
+            </div>
+
+            <div class="progression-track">
+              <!-- Node 1: SDE-2 -->
+              <div class="progression-item">
+                <div class="progression-rail">
+                  <div class="rail-node active" title="Current Role"></div>
+                  <div class="rail-line"></div>
+                </div>
+                <div class="progression-content">
+                  <div class="progression-role-head">
+                    <div class="progression-role-title">
+                      <h4>SDE-2</h4>
+                      <span class="role-period">APR 2026 — PRESENT</span>
+                      <span class="role-badge">Promoted</span>
+                    </div>
+                    <a class="role-deepdive-btn" href="experience/porter.html#sde-2">View SDE-2 Deep-Dive →</a>
+                  </div>
+                  <div class="role-stats-pills">
+                    <span class="stat-pill"><b>0 Downtime</b> Ktor → Spring Boot</span>
+                    <span class="stat-pill"><b>DDD Architecture</b> decoupled domain</span>
+                    <span class="stat-pill"><b>Landing Trip Fare</b> P0 endpoint</span>
+                    <span class="stat-pill"><b>OpenTelemetry</b> distributed tracing</span>
+                  </div>
+                  <p>Leading backend architecture and service segregation for Porter's core trip lifecycle and pricing microservices.</p>
+                  <ul>
+                    <li>Architected and executed a zero-downtime migration of critical high-throughput APIs from Ktor to Spring Boot using Kotlin.</li>
+                    <li>Engineered a new Domain-Driven Design (DDD) system, cleanly segregating trip and fare domains from a legacy system bloated with multiple responsibilities.</li>
+                    <li>Successfully migrated critical P0 endpoints showing final fare calculations on the landing screen at trip completion.</li>
+                    <li>Integrated Redis caching, PostgreSQL persistence, and Kafka event streams with multi-service distributed tracing using OpenTelemetry.</li>
+                  </ul>
+                  <div class="tags"><span>Kotlin</span><span>Spring Boot</span><span>PostgreSQL</span><span>Redis</span><span>Kafka</span><span>OpenTelemetry</span><span>Domain-Driven Design</span></div>
+                </div>
+              </div>
+
+              <!-- Node 2: SDE-1 -->
+              <div class="progression-item">
+                <div class="progression-rail">
+                  <div class="rail-node" title="Promoted from SDE-1"></div>
+                  <div class="rail-line"></div>
+                </div>
+                <div class="progression-content">
+                  <div class="progression-role-head">
+                    <div class="progression-role-title">
+                      <h4>SDE-1</h4>
+                      <span class="role-period">DEC 2024 — APR 2026</span>
+                    </div>
+                    <a class="role-deepdive-btn" href="experience/porter.html#sde-1">View SDE-1 Deep-Dive →</a>
+                  </div>
+                  <div class="role-stats-pills">
+                    <span class="stat-pill"><b>2.5 TB</b> storage reclaimed</span>
+                    <span class="stat-pill"><b>18 → 2</b> tables refactored</span>
+                    <span class="stat-pill"><b>0.8s</b> invoice p99</span>
+                    <span class="stat-pill"><b>₹16K/mo</b> saved</span>
+                  </div>
+                  <p>Scaled core marketplace data pipelines, dynamic pricing rule engines, and automated billing infrastructure.</p>
+                  <ul>
+                    <li>Built an end-to-end analytical data pipeline into Snowflake, reducing disk storage by <b>2.5 TB</b> and CPU utilisation by <b>2.35%</b>.</li>
+                    <li>Designed a scalable Fare Rule Engine, shrinking the schema from 18 tables to 2 and enabling new pricing knobs without migrations.</li>
+                    <li>Regenerated <b>6.5 crore</b> GST-compliant invoices and cut invoice-worker p99 latency from 6.6s to <b>0.8s</b>.</li>
+                    <li>Merged marketplace shards, saving <b>₹16K/month</b>, and automated OLC retries to reduce CC agent tickets to 0%.</li>
+                    <li>Built multi-layer observability for P0 booking, allocation and fulfillment APIs.</li>
+                  </ul>
+                  <div class="tags"><span>Kotlin</span><span>Ruby</span><span>Terraform</span><span>GCP</span><span>Kafka</span><span>Pub/Sub</span><span>Snowflake</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Basil.Care Progression (Intern to SDE-1) -->
+        <article class="company-group">
+          <div class="role-meta">
+            <span>DEC 2023 — NOV 2024</span>
+            <span>MUMBAI</span>
+            <span class="company-badge">Intern → SDE-1</span>
+          </div>
+          <div>
+            <div class="company-head">
+              <h3>Basil.Care <small>Healthcare AI & Diagnostic Records</small></h3>
+              <a class="role-deepdive-btn" href="experience/basil-care.html">Explore Basil Case Study ↗</a>
+            </div>
+
+            <div class="progression-track">
+              <!-- Node 1: SDE-1 -->
+              <div class="progression-item">
+                <div class="progression-rail">
+                  <div class="rail-node active" title="Full-time Role"></div>
+                  <div class="rail-line"></div>
+                </div>
+                <div class="progression-content">
+                  <div class="progression-role-head">
+                    <div class="progression-role-title">
+                      <h4>SDE-1</h4>
+                      <span class="role-period">SEP 2024 — NOV 2024</span>
+                      <span class="role-badge">Promoted</span>
+                    </div>
+                    <a class="role-deepdive-btn" href="experience/basil-care.html">View SDE-1 Deep-Dive →</a>
+                  </div>
+                  <div class="role-stats-pills">
+                    <span class="stat-pill"><b>Conversational AI</b> longitudinal health</span>
+                    <span class="stat-pill"><b>React ↔ Android</b> JS bridge</span>
+                    <span class="stat-pill"><b>WebSocket</b> real-time sync</span>
+                  </div>
+                  <p>Built conversational and orchestration experiences around lab reports and longitudinal health data.</p>
+                  <ul>
+                    <li>Developed an interactive conversational chatbot for querying lab reports and longitudinal patient data.</li>
+                    <li>Created orchestration flows for proactive diagnostic insights and biomarker trend analysis.</li>
+                    <li>Built a high-performance JavaScript bridge between React web components and native Android WebView containers.</li>
+                  </ul>
+                  <div class="tags"><span>React</span><span>WebSocket</span><span>Android</span><span>WebView</span><span>FastAPI</span></div>
+                </div>
+              </div>
+
+              <!-- Node 2: SDE Intern -->
+              <div class="progression-item">
+                <div class="progression-rail">
+                  <div class="rail-node" title="Internship (Pre-Promotion)"></div>
+                  <div class="rail-line"></div>
+                </div>
+                <div class="progression-content">
+                  <div class="progression-role-head">
+                    <div class="progression-role-title">
+                      <h4>SDE INTERN</h4>
+                      <span class="role-period">DEC 2023 — AUG 2024</span>
+                    </div>
+                    <a class="role-deepdive-btn" href="experience/basil-care.html#rag-pipeline">View RAG Deep-Dive →</a>
+                  </div>
+                  <div class="role-stats-pills">
+                    <span class="stat-pill"><b>98.3%</b> extraction accuracy</span>
+                    <span class="stat-pill"><b>RAG Pipeline</b> medical indexing</span>
+                    <span class="stat-pill"><b>OAuth / OIDC</b> security module</span>
+                  </div>
+                  <p>Engineered document intelligence pipelines, medical RAG systems, and enterprise authentication.</p>
+                  <ul>
+                    <li>Built deterministic PDF parsing components and integrated LLM few-shot prompt engineering to achieve <b>98.3%</b> biomarker extraction accuracy.</li>
+                    <li>Implemented a RAG pipeline indexing medical knowledge sources to strictly bound responses and eliminate hallucinations.</li>
+                    <li>Architected and deployed an OAuth 2.0 / OIDC authentication and authorization module protecting sensitive patient records.</li>
+                  </ul>
+                  <div class="tags"><span>Python</span><span>MongoDB</span><span>Docker</span><span>AWS</span><span>RAG</span><span>LLM APIs</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="section-head"><p class="eyebrow">02 · SELECTED PROJECTS</p><h2>Things I've<br>built.</h2></div>
+      <div class="project-grid">
+        <article class="project-card dark">
+          <div class="project-number">01</div><p class="project-type">SYSTEMS · JAVA</p>
+          <h3>Rate Limiting<br>Service</h3>
+          <p>Scalable endpoint-specific and hierarchical rate limiting using Redis and Lua, with configuration-driven validation and predictable behavior through Redis failures.</p>
+          <div class="tags"><span>Java</span><span>Redis</span><span>LuaScript</span></div>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="project-card light">
+          <div class="project-number">02</div><p class="project-type">WEB · FLASK</p>
+          <h3>Blog<br>Website</h3>
+          <p>Full-stack blog platform with authentication, authorization, CRUD workflows and a MySQL-backed data layer.</p>
+          <div class="tags"><span>Flask</span><span>Jinja2</span><span>SQLAlchemy</span><span>MySQL</span></div>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="section-head"><p class="eyebrow">03 · ABOUT</p><h2>Engineer by craft,<br>curious by default.</h2></div>
+      <div class="about-grid">
+        <div><p class="big-copy">I enjoy working where software meets scale: data-intensive systems, backend architecture, reliability, and AI-powered products.</p><p>My engineering experience spans production systems at Porter and Basil.Care, plus independent work on distributed infrastructure and web applications.</p></div>
+        <div class="skills"><h3>Toolkit</h3><p>C++ · Python · Kotlin · Java · Ruby</p><p>Docker · Terraform · GCP · AWS</p><p>Kafka · Pub/Sub · Redis</p><p>PostgreSQL · MongoDB · MySQL</p><p>React · Android · Flask</p><p>Machine Learning · RAG · LLM APIs</p></div>
+      </div>
+      <div class="education"><span>EDUCATION</span><b>Indian Institute of Information Technology, Pune</b><span>2020 — 2024</span><b>B.Tech · Computer Science & Engineering</b></div>
+      <div class="achievement"><span>ACHIEVEMENTS</span><p><b>Top 1.8 percentile</b> in JEE Main 2020 · <b>Rank 864 / 70,000</b> in COMEDK 2020</p></div>
+    </section>
+
+    <section id="contact" class="contact">
+      <p class="eyebrow">04 · CONTACT</p>
+      <h2>Have a hard problem?<br><em>Let's build it.</em></h2>
+      <a class="contact-link" href="mailto:bagra200chetan@gmail.com">bagra200chetan@gmail.com ↗</a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://leetcode.com/" target="_blank" rel="noreferrer">LeetCode</a>
+      </div>
+    </section>
+  </main>
+  <footer><span>© 2026 Chetan Bagra</span><span>Built with intent.</span></footer>
+  <script src="script.js"></script>
 </body>
 </html>
