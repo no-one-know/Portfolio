@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Porter Engineering Case Study — Chetan Bagra</title>
-  <meta name="description" content="In-depth engineering case study of Chetan Bagra's work at Porter as SDE-2 and SDE-1: zero-downtime Ktor to Spring Boot migration, domain-driven service segregation, Snowflake analytical pipelines, and fare rule engines.">
+  <meta name="description" content="In-depth engineering case study of Chetan Bagra's work at Porter as SDE-2 and SDE-1: zero-downtime K2 to Spring Boot migration, domain-driven service segregation, Datadog shadow parity validation, Snowflake analytical pipelines, and fare rule engines.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@
           </div>
           <div class="case-meta-item">
             <small>CORE STACK</small>
-            <strong>Kotlin · Spring Boot · PostgreSQL · Redis · Kafka · Snowflake · OpenTelemetry</strong>
+            <strong>Kotlin · Spring Boot · PostgreSQL · Redis · Kafka · Snowflake · OpenTelemetry · Datadog</strong>
           </div>
         </div>
       </div>
@@ -56,24 +56,28 @@
     <section class="case-content" style="padding-bottom: 0;">
       <div class="case-metrics-banner">
         <div class="case-metric-box">
+          <strong>0 Downtime</strong>
+          <span>K2 → Spring Boot Migration</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>18 → Dedicated DB</strong>
+          <span>Monolith Tables Segregated</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>70 + 27 RPS</strong>
+          <span>P0 Revenue Endpoints</span>
+        </div>
+        <div class="case-metric-box">
+          <strong>100% Parity</strong>
+          <span>Datadog Shadow Validation</span>
+        </div>
+        <div class="case-metric-box">
           <strong>2.5 TB</strong>
           <span>Disk Storage Reclaimed</span>
         </div>
         <div class="case-metric-box">
-          <strong>18 → 2</strong>
-          <span>Tables Refactored</span>
-        </div>
-        <div class="case-metric-box">
           <strong>0.8s</strong>
           <span>Invoice p99 (from 6.6s)</span>
-        </div>
-        <div class="case-metric-box">
-          <strong>₹16K/mo</strong>
-          <span>Cloud Infra Savings</span>
-        </div>
-        <div class="case-metric-box">
-          <strong>0 Downtime</strong>
-          <span>Ktor → Spring Boot Migration</span>
         </div>
       </div>
     </section>
@@ -84,68 +88,107 @@
       <article class="case-block" id="sde-2">
         <div class="case-block-header">
           <p class="eyebrow">01 · SDE-2 ARCHITECTURAL LEADERSHIP</p>
-          <h2>Zero-Downtime Ktor to Spring Boot Migration & Domain-Driven Segregation</h2>
+          <h2>Zero-Downtime K2 to Spring Boot Migration & Domain-Driven Segregation</h2>
         </div>
 
-        <p class="lede">As Porter scaled, a legacy Ktor service had become an overloaded monolith with intertwined responsibilities spanning trip tracking, fare computations, driver status, and post-trip settlements. As SDE-2, I led the architectural segregation of this monolith into a clean Domain-Driven Design (DDD) service in Spring Boot, migrating mission-critical P0 endpoints with zero customer downtime.</p>
+        <p class="lede">Porter's dynamic pricing and promotional campaigns originally lived inside a legacy Ktor (K2) service backed by a single centralized monolith database containing 18 entangled tables. Maintaining these tables and understanding what rules applied across which table had become a developer nightmare with severe regression risks. As SDE-2, I led the end-to-end architectural segregation: defining Domain-Driven Design (DDD) bounded contexts, carving out an independent Spring Boot service with its own dedicated database, and migrating mission-critical P0 endpoints (~70 RPS and ~27 RPS) with zero downtime through fast dark shadowing, Datadog metric diff mitigation, and a phased rollout.</p>
 
         <!-- System Architecture Diagram -->
         <div class="arch-diagram-wrap">
           <div class="arch-diagram-top">
             <span></span><span></span><span></span>
-            <small>ddd_segregation.sys — ktor to spring boot migration</small>
+            <small>ddd_segregation_flow.sys — k2 to spring boot migration & datadog shadow</small>
           </div>
           <div class="arch-diagram-body">
             <pre>
-BEFORE: Bloated Monolithic Service (Ktor)
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ [Trip Lifecycle]  •  [Landing Fare Calculation]  •  [Post-Trip Settlement]  │
-│ (Coupled domain logic, high deployment blast radius, brittle shared DBs)   │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                       │
-                      (Domain-Driven Design Segregation)
-                                       ▼
-AFTER: Clean Decoupled Microservice Architecture (Spring Boot & Kotlin)
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ Core Trip Service (Spring Boot + Kotlin)                                     │
-│ ┌───────────────────────────┐         ┌───────────────────────────────────┐ │
-│ │ Trip Settlement Domain    │ ◄─────► │ Landing Fare Calculation Domain   │ │
-│ │ • Bounded trip context    │         │ • P0 endpoint at trip completion  │ │
-│ └─────────────┬─────────────┘         └─────────────────┬─────────────────┘ │
-└───────────────┼─────────────────────────────────────────┼───────────────────┘
-                │                                         │
-                ▼                                         ▼
-┌───────────────────────────────┐         ┌───────────────────────────────────┐
-│ PostgreSQL Transactional DB   │         │ Redis High-Throughput Cache       │
-│ (ACID ledger, partitioned)    │         │ (Sub-millisecond fare lookups)    │
-└───────────────┬───────────────┘         └─────────────────┬─────────────────┘
-                │                                           │
-                ▼                                           ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ Kafka Event Streaming  +  OpenTelemetry Distributed Tracing & APM           │
-└─────────────────────────────────────────────────────────────────────────────┘</pre>
+BEFORE: Legacy Centralized Monolith + Shared Monolith Database
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ Legacy Monolith Service (Ktor / K2)                                                    │
+│ [Trip Lifecycle]   •   [Pickup/Drop Pricing (~70 RPS)]   •   [End-Trip Calc (~27 RPS)] │
+└───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ Centralized Monolith Database                                                          │
+│ 18 Entangled Tables: Pricing Campaigns, Slabs, Coupon Multipliers, Geo Rules, Surcharges│
+│ (Chaotic rule evaluation, schema friction, shared DB lock contention, high blast risk) │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+                                            │
+               Domain-Driven Design (DDD) Segregation & Storage Decoupling
+                                            ▼
+AFTER: Dedicated Spring Boot Microservice & Isolated Service Database
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ Dedicated Pricing & Campaign Microservice (Spring Boot + Kotlin)                       │
+│ ┌───────────────────────────────────────────┐ ┌──────────────────────────────────────┐ │
+│ │ Pickup/Drop Price Estimation Domain       │ │ End-Trip Fare & Breach Domain        │ │
+│ │ • ~70 RPS landing screen location quote   │ │ • ~27 RPS trip completion settlement │ │
+│ │ • Campaign discount & slab evaluation     │ │ • SLA, waiting & route breach checks │ │
+│ └─────────────────────┬─────────────────────┘ └───────────────────┬──────────────────┘ │
+└───────────────────────┼───────────────────────────────────────────┼────────────────────┘
+                        ▼                                           ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ Dedicated Service Database (PostgreSQL)  +  Redis Sub-Millisecond Cache Layer          │
+│ (Decoupled from monolith DB; 18-table legacy campaign data migrated & reconciled)      │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+                                            │
+         Zero-Downtime Verification & Phased Rollout Infrastructure
+                                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ [Production Traffic Gateway]                                                          │
+│    ├──► Live Primary Requests (Legacy Ktor / K2 Service)                              │
+│    └──► Fast Dark Shadowing (Dedicated Spring Boot Service)                           │
+│            │                                                                          │
+│            ▼ (Datadog Custom Metric Engine & Dashboard Monitors)                      │
+│            Payload Parity Ratios  •  Latency Deltas  •  Error Differential Tracking   │
+│            [Investigate Diffs] ──► [Mitigate in Code] ──► [100% Parity Achieved]      │
+│                                                                                       │
+│ Phased Canary Rollout: By Geo-Regions (Cities) & Vehicle Types (1% ➔ 25% ➔ 50% ➔ 100%)│
+│ Outcome: 100% Zero Downtime • 0 Session Drops • 0 Pricing Discrepancies               │
+└────────────────────────────────────────────────────────────────────────────────────────┘</pre>
           </div>
         </div>
 
+        <!-- Pillar Grid 1: Problem & DDD Architecture -->
         <div class="case-grid-split">
           <div class="challenge-card">
-            <span class="card-label">The Challenge</span>
-            <h4>Monolithic Bloat & Critical P0 Trip Flow</h4>
+            <span class="card-label">The Legacy Bottleneck</span>
+            <h4>18 Monolith DB Tables & Rule Maintenance Chaos</h4>
             <ul>
-              <li>The legacy service combined multiple business domains into a single codebase, making deployments risky and slow.</li>
-              <li>The landing screen fare endpoint at trip completion is one of Porter's most critical paths: any latency spike or failure directly halts trip settlements and driver payouts.</li>
-              <li>Required moving high-volume production traffic from Ktor to Spring Boot with Kotlin without dropping a single in-flight trip or recording pricing discrepancies.</li>
+              <li><b>18-Table Web:</b> Pricing campaigns, partner promotions, vehicle slabs, and city surcharges were scattered across 18 unindexed, interconnected tables in the shared monolith DB.</li>
+              <li><b>Opaque Evaluation:</b> It was nearly impossible to determine which campaign or rule was getting evaluated or taking precedence across which table, leading to severe cognitive overhead and high regression risk.</li>
+              <li><b>Shared Blast Radius:</b> Complex multi-table joins on the monolith database during peak booking hours threatened relational lock contention across the entire trip booking lifecycle.</li>
             </ul>
           </div>
 
           <div class="solution-card">
-            <span class="card-label">Engineering Strategy</span>
-            <h4>Zero-Downtime Migration & Bounded Contexts</h4>
+            <span class="card-label">Architectural Strategy</span>
+            <h4>DDD Bounded Contexts & Dedicated Service Database</h4>
             <ul>
-              <li><b>Domain-Driven Design (DDD):</b> Segregated trip state and fare settlement into distinct bounded contexts with explicit interfaces and zero circular dependencies.</li>
-              <li><b>Shadow Traffic & Parity Validation:</b> Built a dark-launch proxy that piped real trip completion events concurrently to both the legacy Ktor endpoint and the new Spring Boot service, comparing calculation outputs to ensure 100% parity.</li>
-              <li><b>Canary Cutover:</b> Migrated endpoints incrementally by city and vehicle category, backed by automated health checks and instant rollback triggers.</li>
-              <li><b>Distributed Observability:</b> Instrumented the new services with OpenTelemetry, tracing requests end-to-end across API gateways, cache layers, and databases.</li>
+              <li><b>Domain-Driven Segregation:</b> Extracted the pricing campaign and fare calculation domain out of the monolithic Ktor (K2) codebase into an independent Spring Boot service written in Kotlin.</li>
+              <li><b>Storage Isolation:</b> Provisioned a dedicated service database, completely severing operational dependence on the monolith DB.</li>
+              <li><b>Zero-Loss Data Migration:</b> Engineered a comprehensive data migration pipeline that extracted, normalized, and reconciled historical campaign configurations from the 18 monolith tables into the new service DB.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar Grid 2: Critical APIs & Zero-Downtime Validation -->
+        <div class="case-grid-split" style="margin-top: 30px;">
+          <div class="challenge-card">
+            <span class="card-label">High-Throughput P0 Endpoints</span>
+            <h4>Mission-Critical Revenue & Settlement Paths</h4>
+            <ul>
+              <li><b>Pickup/Drop Pricing Estimation (~70 RPS):</b> The primary landing screen API invoked whenever a customer selects pickup and drop locations. Must calculate real-time vehicle rates, dynamic surges, and active campaign discounts under heavy concurrency.</li>
+              <li><b>End-Trip Fare & Breach Settlement (~27 RPS):</b> Triggered at the exact moment a driver completes a trip. Evaluates actual distance traveled, waiting times, toll charges, SLA/route breaches, and final ledger settlement with strict financial precision.</li>
+              <li>Both endpoints demanded sub-50ms p99 latency SLAs without a single dropped customer booking or driver payout session.</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <span class="card-label">Validation & Rollout</span>
+            <h4>Fast Shadowing, Datadog Diff Mitigation & Canary Rollout</h4>
+            <ul>
+              <li><b>Fast Dark Shadowing:</b> Duplicated 100% of live incoming production requests asynchronously to the new Spring Boot service without adding latency to the primary user path.</li>
+              <li><b>Datadog Metrics & Diff Investigation:</b> Instrumented Datadog dashboards to compare response payloads in real time. Methodically investigated every discrepancy, uncovered subtle legacy edge-case bugs, and mitigated them in code until reaching <b>100% shadow parity</b>.</li>
+              <li><b>Geo & Vehicle Phased Rollout:</b> Progressively rolled out live traffic by geographic regions (cities) and vehicle types (2-wheelers, 3-wheelers, commercial trucks) with automated circuit breakers and instant rollback capabilities.</li>
             </ul>
           </div>
         </div>
@@ -153,8 +196,8 @@ AFTER: Clean Decoupled Microservice Architecture (Spring Boot & Kotlin)
         <div style="margin-top: 30px;">
           <div class="impact-card">
             <span class="card-label">Measurable Outcome</span>
-            <h4>100% Zero Downtime & Cleaner Domain Decoupling</h4>
-            <p>Successfully migrated all critical landing screen trip fare and settlement endpoints with <b>zero seconds of downtime</b> and zero revenue leakage. Decoupled the domain into modular, maintainable microservices that now allow product teams to iterate independently with high deployment confidence.</p>
+            <h4>100% Zero Downtime, Zero Pricing Leakage & Decoupled Architecture</h4>
+            <p>Individually orchestrated and executed the migration of ~97 combined RPS across core revenue paths with <b>zero seconds of downtime</b> and <b>zero calculation discrepancies</b>. Replaced the unmaintainable 18-table monolith database coupling with an isolated, domain-driven microservice and dedicated database, accelerating feature deployment velocity for pricing and marketing teams while securing absolute financial settlement accuracy.</p>
           </div>
         </div>
       </article>

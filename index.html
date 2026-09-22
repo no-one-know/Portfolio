@@ -65,7 +65,7 @@
       <div><strong>6.5 Cr</strong><span>GST invoices regenerated</span></div>
       <div><strong>0.8s</strong><span>invoice worker p99</span></div>
       <div><strong>₹16K/mo</strong><span>infra savings</span></div>
-      <div><strong>0 Downtime</strong><span>Ktor → Spring Boot migration</span></div>
+      <div><strong>0 Downtime</strong><span>K2 → Spring Boot migration</span></div>
     </section>
 
     <section id="work" class="section">
@@ -99,19 +99,19 @@
                     <a class="role-deepdive-btn" href="experience/porter.html#sde-2">View SDE-2 Deep-Dive →</a>
                   </div>
                   <div class="role-stats-pills">
-                    <span class="stat-pill"><b>0 Downtime</b> Ktor → Spring Boot</span>
-                    <span class="stat-pill"><b>DDD Architecture</b> decoupled domain</span>
-                    <span class="stat-pill"><b>Landing Trip Fare</b> P0 endpoint</span>
-                    <span class="stat-pill"><b>OpenTelemetry</b> distributed tracing</span>
+                    <span class="stat-pill"><b>0 Downtime</b> K2 → Spring Boot</span>
+                    <span class="stat-pill"><b>18 Tables Segregated</b> to dedicated DB</span>
+                    <span class="stat-pill"><b>70 + 27 RPS</b> P0 endpoints</span>
+                    <span class="stat-pill"><b>100% Parity</b> Datadog shadow validation</span>
                   </div>
-                  <p>Leading backend architecture and service segregation for Porter's core trip lifecycle and pricing microservices.</p>
+                  <p>Leading backend architecture, domain-driven microservice segregation, and zero-downtime migrations for Porter's core pricing and fare settlement engines.</p>
                   <ul>
-                    <li>Architected and executed a zero-downtime migration of critical high-throughput APIs from Ktor to Spring Boot using Kotlin.</li>
-                    <li>Engineered a new Domain-Driven Design (DDD) system, cleanly segregating trip and fare domains from a legacy system bloated with multiple responsibilities.</li>
-                    <li>Successfully migrated critical P0 endpoints showing final fare calculations on the landing screen at trip completion.</li>
-                    <li>Integrated Redis caching, PostgreSQL persistence, and Kafka event streams with multi-service distributed tracing using OpenTelemetry.</li>
+                    <li>Individually architected and executed the zero-downtime migration of critical high-throughput P0 endpoints: the <b>70 RPS</b> pickup/drop pricing estimate screen and <b>27 RPS</b> end-trip fare & breach calculation engine from Ktor (K2) to Spring Boot.</li>
+                    <li>Segregated 18 tightly-coupled pricing campaign and discount tables out of the shared monolith database into a dedicated, domain-driven Spring Boot microservice with an isolated service DB.</li>
+                    <li>Implemented asynchronous dark traffic shadowing, instrumenting Datadog metrics to actively investigate payload diffs and mitigate edge cases until reaching <b>100% shadow parity</b>.</li>
+                    <li>Orchestrated a phased canary rollout across geographic regions (cities) and vehicle types with automated rollback triggers, achieving 100% zero downtime and zero revenue leakage.</li>
                   </ul>
-                  <div class="tags"><span>Kotlin</span><span>Spring Boot</span><span>PostgreSQL</span><span>Redis</span><span>Kafka</span><span>OpenTelemetry</span><span>Domain-Driven Design</span></div>
+                  <div class="tags"><span>Kotlin</span><span>Spring Boot</span><span>PostgreSQL</span><span>Redis</span><span>Kafka</span><span>Datadog</span><span>Domain-Driven Design</span></div>
                 </div>
               </div>
 
